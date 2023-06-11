@@ -1,13 +1,14 @@
 from flask import Flask
 
 
-app = Flask(__name__)
+# app = Flask(__name__)
 
+
+app = Flask("abc")
 
 @app.route('/')
-def index():
-    return "say Hi"
-
+def hello_world():
+    return 'Hello, World!'
 
 if __name__ == '__main__':
     app.run(debug=True)
