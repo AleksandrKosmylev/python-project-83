@@ -15,7 +15,7 @@ def index():
 
 @app.route("/urls ", methods=['POST'])
 def site_check():
-    return "Hi"
+    return "Hi!"
     #return render_template(
     #    'urls/index.html'
     #    )
