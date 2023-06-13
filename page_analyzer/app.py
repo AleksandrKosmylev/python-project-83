@@ -15,9 +15,10 @@ def index():
 
 @app.route("/urls ", methods=['POST'])
 def site_check():
-    return render_template(
-        'urls/index.html'
-        )
+    return "Hi"
+    #return render_template(
+    #    'urls/index.html'
+    #    )
 
 if __name__ == '__main__':
     index()
