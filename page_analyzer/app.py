@@ -14,7 +14,7 @@ def index():
 
 
 #@app.route("/", methods=['POST'])
-@app.route("/urls")
+@app.post("/urls")
 def site_check():
     return "Hi!"
     #return render_template(
