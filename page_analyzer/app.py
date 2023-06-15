@@ -13,7 +13,8 @@ def index():
     return render_template('index.html')
 
 
-@app.route("/", methods=['POST'])
+#@app.route("/", methods=['POST'])
+@app.route("/urls")
 def site_check():
     return "Hi!"
     #return render_template(
