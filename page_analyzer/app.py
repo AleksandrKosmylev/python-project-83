@@ -23,10 +23,19 @@ def site_check():
     #return render_template('urls/index.html' )
     #return fill
     try:
-        conn = psycopg2.connect("dbname=suppliers user=postgres password=paralich666")
-        conn
+        conn = psycopg2.connect(host="127.0.0.1",
+                                dbname="suppliers",
+                                user="postgres",
+                                password="paralich666")
+        cursor = conn.cursor()
+        with conn.cursor() as curs:
+            pass
     except:
         print('Can`t establish connection to database')
+    finally:
+        if conn:
+            conn.close()
+            print("Connection closed")
 
 
 if __name__ == '__main__':
