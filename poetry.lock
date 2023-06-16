@@ -75,6 +75,14 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "psycopg2-binary"
+version = "2.9.6"
+description = "psycopg2 - Python-PostgreSQL Database Adapter"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "werkzeug"
 version = "2.3.4"
 description = "The comprehensive WSGI web application library."
@@ -91,7 +99,7 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "d7a65ba75d9fd1d70398a76955d93d28129b8c09a3b56e10fef71ce427090c8b"
+content-hash = "de302b803ea5bdd8c81a0545e672a817fdd7faf6f9dd736629d3da8903e8cafa"
 
 [metadata.files]
 blinker = []
@@ -101,4 +109,5 @@ flask = []
 itsdangerous = []
 jinja2 = []
 markupsafe = []
+psycopg2-binary = []
 werkzeug = []
