@@ -24,7 +24,7 @@ def site_check():
     #return fill
     try:
         conn = psycopg2.connect(dbname='urls', user='postgres', password='paralich666', host='host')
-        return conn"
+        return conn
     except:
         print('Can`t establish connection to database')
 
