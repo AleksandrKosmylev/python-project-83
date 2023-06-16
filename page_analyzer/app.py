@@ -9,6 +9,7 @@ from flask import (
 
 app = Flask(__name__)
 
+export DATABASE_URL=postgresql://postgresql:paralich666@localhost:5432/urls
 
 @app.route('/')
 def index():
@@ -24,7 +25,7 @@ def site_check():
     #return fill
 
     conn = psycopg2.connect(host="127.0.0.1",
-                            dbname="suppliers",
+                            dbname="urls",
                             user="postgres",
                             password="paralich666")
     cursor = conn.cursor()
