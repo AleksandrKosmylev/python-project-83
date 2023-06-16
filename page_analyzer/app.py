@@ -2,7 +2,8 @@ from flask import (
     Flask,
     render_template,
     request,
-    redirect
+    redirect,
+    psycopg2
 )
 
 
@@ -20,7 +21,12 @@ def site_check():
     fill  = request.form['url']
     # return redirect(url_for('success', name=user))
     #return render_template('urls/index.html' )
-    return fill
+    #return fill
+    try:
+        conn = psycopg2.connect(dbname='urls', user='postgres', password='paralich666', host='host')
+        return "success"
+    except:
+        print('Can`t establish connection to database')
 
 
 if __name__ == '__main__':
