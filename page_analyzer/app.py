@@ -44,4 +44,4 @@ def site_check():
 
 
 if __name__ == '__main__':
-    index()
+    index(host='0.0.0.0', port=8080)
