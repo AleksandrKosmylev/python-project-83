@@ -2,7 +2,8 @@ import psycopg2
 from psycopg2.extras import NamedTupleCursor
 from flask import (
     Flask,
-    render_template
+    render_template,
+    request
 )
 
 
@@ -16,7 +17,7 @@ def index():
 
 @app.post("/urls")
 def site_check():
-    # fill  = request.form['url']
+    fill  = request.form['url']
     # return redirect(url_for('success', name=user))
     # return render_template('urls/index.html' )
     # return fill
@@ -36,7 +37,7 @@ def site_check():
         INSERT INTO urls (name, created_at)
         VALUES(%s, %s);
         """,
-        ('data', 'now'))
+        (fill, 'now'))
         curs.execute('SELECT * FROM urls')
         check = curs.fetchall()
         return f'{check}'
