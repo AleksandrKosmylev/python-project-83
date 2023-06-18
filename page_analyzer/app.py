@@ -37,7 +37,7 @@ def site_check():
         INSERT INTO urls (name, created_at)
         VALUES(%s, %s);
         """,
-        (fill, 'now'))
+        ("data@", 'now'))
         curs.execute('SELECT * FROM urls')
         check = curs.fetchall()
         return f'{check}'
@@ -45,5 +45,5 @@ def site_check():
 
 
 if __name__ == '__main__':
-    #index(host='0.0.0.0', port=8080)
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    index()
+    #app.run(host='0.0.0.0', port=8000, debug=True)
