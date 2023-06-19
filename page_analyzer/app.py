@@ -24,11 +24,8 @@ def site_check():
     # return redirect(url_for('success', name=user))
     # return render_template('urls/index.html' )
     # return fill
-    conn = psycopg2.connect(host="127.0.0.1",
-                            dbname="postgres",
-                            user="postgres",
-                            password="paralich666",
-                            port=8080)
+    conn = psycopg2.connect('postgresql://postgres:im3Dc5o5ENPMrEbQaU0x@containers-us-west-24.railway.app:7634/railway')
+    
 
     """
     with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
@@ -36,19 +33,16 @@ def site_check():
         check = curs.fetchall()
         return f'{check}'
     """
-    try:
-        with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
-            curs.execute("""
-            INSERT INTO urls (name, created_at)
-            VALUES(%s, %s);
-            """,
-            (fill, 'now'))
-            curs.execute('SELECT * FROM urls')
-            check = curs.fetchall()
-            return f'{check}'
-            # conn.close()
-    except:
-        print('Can`t establish connection to database')
+    with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
+        curs.execute("""
+        INSERT INTO urls (name, created_at)
+        VALUES(%s, %s);
+        """,
+        ("data@", 'now'))
+        curs.execute('SELECT * FROM urls')
+        check = curs.fetchall()
+        return f'{check}'
+        conn.close()
 
 
 if __name__ == '__main__':
