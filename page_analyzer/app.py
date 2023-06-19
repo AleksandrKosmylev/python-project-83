@@ -24,10 +24,11 @@ def site_check():
     # return redirect(url_for('success', name=user))
     # return render_template('urls/index.html' )
     # return fill
-    conn = psycopg2.connect(host="0.0.0.0",
+    conn = psycopg2.connect(host="127.0.0.1",
                             dbname="postgres",
                             user="postgres",
-                            password="paralich666")
+                            password="paralich666",
+                            port=8080)
 
     """
     with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
