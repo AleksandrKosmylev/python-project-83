@@ -5,13 +5,16 @@ from flask import (
     render_template,
     request
 )
+
 from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
 
-
 load_dotenv()
+
 
 @app.route('/')
 def index():
@@ -20,7 +23,7 @@ def index():
 
 @app.post("/urls")
 def site_check():
-    fill  = request.form['url']
+    fill = request.form['url']
     # return redirect(url_for('success', name=user))
     # return render_template('urls/index.html' )
     # return fill
