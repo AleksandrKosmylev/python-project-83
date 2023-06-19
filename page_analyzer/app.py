@@ -29,10 +29,6 @@ def site_check():
                             user="postgres",
                             password="paralich666",
                             port=8080)
-    try:
-        conn
-    except:
-        print('Can`t establish connection to database')
 
     """
     with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
@@ -40,16 +36,19 @@ def site_check():
         check = curs.fetchall()
         return f'{check}'
     """
-    with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
-        curs.execute("""
-        INSERT INTO urls (name, created_at)
-        VALUES(%s, %s);
-        """,
-        ("data@", 'now'))
-        curs.execute('SELECT * FROM urls')
-        check = curs.fetchall()
-        return f'{check}'
-        conn.close()
+    try:
+        with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
+            curs.execute("""
+            INSERT INTO urls (name, created_at)
+            VALUES(%s, %s);
+            """,
+            (fill, 'now'))
+            curs.execute('SELECT * FROM urls')
+            check = curs.fetchall()
+            return f'{check}'
+            # conn.close()
+    except:
+        print('Can`t establish connection to database')
 
 
 if __name__ == '__main__':
