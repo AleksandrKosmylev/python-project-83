@@ -9,6 +9,9 @@ from flask import (
 
 app = Flask(__name__)
 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 @app.route('/')
 def index():
