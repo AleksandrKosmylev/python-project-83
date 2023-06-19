@@ -5,11 +5,11 @@ from flask import (
     render_template,
     request
 )
-
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-from dotenv import load_dotenv
+
 
 load_dotenv()
 
