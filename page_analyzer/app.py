@@ -5,7 +5,7 @@ from flask import (
     render_template,
     request
 )
-import  validators
+import validators
 
 
 from dotenv import load_dotenv
@@ -14,6 +14,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
+
 def validate(url_string):
     errors = {}
     if not validators.url(url_string):
@@ -21,6 +22,7 @@ def validate(url_string):
     if len(url_string) > 256:
         errors['url_string'] = "Should be less than 255 characters"
     return errors
+
 
 @app.route('/')
 def index():
