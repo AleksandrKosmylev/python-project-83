@@ -7,6 +7,7 @@ start:
 	pip install gunicorn
 	pip install validators
 	poetry add gunicorn
+	poetry add validators	
 	poetry run gunicorn -w 5 -b 0.0.0.0:$(PORT) page_analyzer:app
 
 install:
