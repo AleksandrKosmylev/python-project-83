@@ -8,7 +8,7 @@ start:
 	pip install validators
 	poetry add gunicorn
 	poetry add validators	
-	pip install postgres
+	sudo service postgresql status
 	createdb url_database
 	psql url_database < database.sql
 
