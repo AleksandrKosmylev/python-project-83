@@ -1,5 +1,10 @@
+DROP TABLE IF EXISTS urls;
+
 CREATE TABLE urls (
-    id bigint PRIMARY KEY,
-    name varchar(50),
-    created_at timestamp
+    id bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(255) UNIQUE NOT NULL,
+    created_at TIMESTAMP
 );
+
+INSERT INTO urls (name, created_at)
+        VALUES('test', 'now')
