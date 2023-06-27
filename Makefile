@@ -5,6 +5,7 @@ PORT ?= 8000
 start:
 	pip install --upgrade pip
 	pip install gunicorn
+	pip install validators
 	poetry add gunicorn
 	poetry run gunicorn -w 5 -b 0.0.0.0:$(PORT) page_analyzer:app
 
