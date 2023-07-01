@@ -8,8 +8,7 @@ start:
 	pip install validators
 	poetry add gunicorn
 	poetry add validators	
-	createdb url_database
-	psql url_database < database.sql
+	export DATABASE_URL=postgresql://postgres:im3Dc5o5ENPMrEbQaU0x@containers-us-west-24.railway.app:7634/railway
 
 	poetry run gunicorn -w 5 -b 0.0.0.0:$(PORT) page_analyzer:app
 
