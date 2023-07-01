@@ -8,7 +8,7 @@ from flask import (
 )
 from validators import url
 
-
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 from dotenv import load_dotenv
 
@@ -33,7 +33,22 @@ def index():
 
 @app.post("/urls")
 def site_check():
-    return "smt"
+    fill = request.form['url']
+    errors = validate(fill)
+    if errors:
+        return "Error", 422
+    
+    conn = psycopg2.connect(DATABASE_URL)
+    with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
+        curs.execute("""
+        INSERT INTO urls (name, created_at)
+        VALUES(%s, %s);
+        """,
+        (fill, 'now'))
+        curs.execute('SELECT * FROM urls')
+        check = curs.fetchall()
+        return f'{check}'
+        conn.close()
 
 
 if __name__ == '__main__':
