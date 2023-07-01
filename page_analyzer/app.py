@@ -1,4 +1,5 @@
-import psycopg2, os
+import psycopg2
+import os
 import validators
 from psycopg2.extras import NamedTupleCursor
 from flask import (
