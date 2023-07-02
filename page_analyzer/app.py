@@ -37,7 +37,7 @@ def site_check():
         return "Error", 422
 
     conn = psycopg2.connect(DATABASE_URL)
-    with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
+    with conn.cursor() as curs:
         curs.execute(
             """
             INSERT INTO urls (name, created_at)
