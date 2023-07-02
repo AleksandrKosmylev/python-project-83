@@ -2,19 +2,16 @@ import psycopg2
 import os
 import validators
 from psycopg2.extras import NamedTupleCursor
+from dotenv import load_dotenv
 from flask import (
     Flask,
     render_template,
     request
 )
-from validators import url
+
 
 DATABASE_URL = os.getenv('DATABASE_URL')
-
-from dotenv import load_dotenv
-
 load_dotenv()
-
 app = Flask(__name__)
 
 
@@ -38,17 +35,20 @@ def site_check():
     errors = validate(fill)
     if errors:
         return "Error", 422
-    
+
     conn = psycopg2.connect(DATABASE_URL)
     with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
-        curs.execute("""
-        INSERT INTO urls (name, created_at)
-        VALUES(%s, %s);
-        """,
-        (fill, 'now'))
+        curs.execute(
+            """
+            INSERT INTO urls (name, created_at)
+            VALUES(%s, %s);
+            """,
+            (fill, 'now')
+        )
         curs.execute('SELECT * FROM urls')
         check = curs.fetchall()
         return f'{check}'
+
 
 if __name__ == '__main__':
     index()
