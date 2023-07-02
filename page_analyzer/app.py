@@ -1,7 +1,6 @@
 import psycopg2
 import os
 import validators
-from psycopg2.extras import NamedTupleCursor
 from dotenv import load_dotenv
 from flask import (
     Flask,
