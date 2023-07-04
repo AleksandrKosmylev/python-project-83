@@ -45,7 +45,6 @@ def site_check():
         curs.execute('SELECT * FROM urls')
         check = curs.fetchall()
         return f'{check}'
-        conn.close()
 
 
 if __name__ == '__main__':
