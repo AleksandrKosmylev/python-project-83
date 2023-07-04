@@ -42,7 +42,7 @@ def site_check():
             INSERT INTO urls (name, created_at)
             VALUES(%s, %s);
             """,
-            ("data@", 'now')
+            ('name', 'now')
         )
         curs.execute('SELECT * FROM urls')
         check = curs.fetchall()
