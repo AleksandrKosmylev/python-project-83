@@ -38,11 +38,11 @@ def site_check():
     conn = psycopg2.connect(DATABASE_URL)
     with conn.cursor() as curs:
         curs.execute(
-            """
-            INSERT INTO urls (name, created_at)
-            VALUES(%s, %s);
-            """,
-            (fill, 'now')
+        """
+        INSERT INTO urls (name, created_at)
+        VALUES(%s, %s);
+        """,
+        (fill, 'now')
         )
         curs.execute('SELECT * FROM urls')
         check = curs.fetchall()
