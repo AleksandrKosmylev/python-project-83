@@ -1,6 +1,7 @@
 import psycopg2
 import os
 import validators
+import time
 from dotenv import load_dotenv
 from flask import (
     Flask,
@@ -36,13 +37,14 @@ def site_check():
         return "Error", 422
 
     conn = psycopg2.connect(DATABASE_URL)
+    now = time.strftime("%Y-%m-%d")
     with conn.cursor() as curs:
         curs.execute(
             """
             INSERT INTO urls (name, created_at)
             VALUES(%s, %s);
             """,
-            ('name', 'now')
+            (fill, now)
         )
         curs.execute('SELECT * FROM urls')
         check = curs.fetchall()
