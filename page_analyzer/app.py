@@ -11,6 +11,7 @@ from flask import (
 
 
 DATABASE_URL = os.getenv('DATABASE_URL')
+print(“DATABASE_URL”, DATABASE_URL)
 load_dotenv()
 app = Flask(__name__)
 
@@ -49,6 +50,8 @@ def site_check():
         curs.execute('SELECT * FROM urls')
         check = curs.fetchall()
         return f'{check}'
+        
+
 
 
 if __name__ == '__main__':
