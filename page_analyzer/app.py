@@ -11,7 +11,7 @@ from flask import (
 
 
 DATABASE_URL = os.getenv('DATABASE_URL')
-print(“DATABASE_URL”, DATABASE_URL)
+print("DATABASE_URL", DATABASE_URL)
 load_dotenv()
 app = Flask(__name__)
 
