@@ -48,10 +48,9 @@ def site_check():
             (fill, now)
         )
         curs.execute('SELECT * FROM urls')
+        conn.commit()
         check = curs.fetchall()
         return f'{check}'
-        
-
 
 
 if __name__ == '__main__':
