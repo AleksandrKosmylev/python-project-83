@@ -3,15 +3,18 @@ import os
 import validators
 import time
 from dotenv import load_dotenv
+import json
 from flask import (
     Flask,
     render_template,
-    request
+    request,
+    redirect,
+    url_for,
+    flash,
 )
 
 
 DATABASE_URL = os.getenv('DATABASE_URL')
-print("DATABASE_URL", DATABASE_URL)
 load_dotenv()
 app = Flask(__name__)
 
@@ -32,8 +35,8 @@ def index():
 
 @app.post("/urls")
 def site_check():
-    fill = request.form['url']
-    errors = validate(fill)
+    address = request.form['url']
+    errors = validate(address)
     if errors:
         return "Error", 422
 
@@ -45,12 +48,27 @@ def site_check():
             INSERT INTO urls (name, created_at)
             VALUES(%s, %s);
             """,
-            (fill, now)
+            (address, now)
         )
+        """
         curs.execute('SELECT * FROM urls')
         conn.commit()
         check = curs.fetchall()
         return f'{check}'
+        """
+    with conn.cursor() as curs:
+        curs.execute(
+            "SELECT id FROM urls WHERE name = %s", (address,)
+        )
+        check = curs.fetchall()
+        print(check)
+        return check
+        # return redirect(url_for('analyze', id=id))
+
+
+@app.route("/urls/<id>")
+def analyze(id):
+    return "check"
 
 
 if __name__ == '__main__':
