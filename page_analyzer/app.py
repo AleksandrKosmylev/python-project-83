@@ -61,7 +61,8 @@ def site_check():
             "SELECT id FROM urls WHERE name = %s", (address,)
         )
         check = curs.fetchall()
-        print(check)
+        print("fetch result=", check)
+        print("get  int=", check[0][0])
         return check
         # return redirect(url_for('analyze', id=id))
 
