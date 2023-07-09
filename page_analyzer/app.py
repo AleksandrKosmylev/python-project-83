@@ -58,18 +58,29 @@ def site_check():
         """
     with conn.cursor() as curs:
         curs.execute(
-            "SELECT id FROM urls WHERE name = %s", (address,)
+            "SELECT * FROM urls WHERE name = %s", (address,)
         )
         check = curs.fetchall()
         print("fetch result=", check)
-        print("get  int=", check[0][0])
-        return check
-        # return redirect(url_for('analyze', id=id))
+        print("get  int=", check[0][0], type(check[0][0]))
+        id = check[0][0]
+        return redirect(url_for('analyze', id=id))
 
 
 @app.route("/urls/<id>")
 def analyze(id):
-    return "check"
+    conn = psycopg2.connect(DATABASE_URL)
+    id_url=id
+    with conn.cursor() as curs:
+        curs.execute(
+            "SELECT * FROM urls WHERE id = %s", (id_url,)
+        )
+        result_url= curs.fetchall()
+    # (url_id, name, created_at) = result_url
+        check = curs.fetchall()
+        print("id=", id)
+        print(check)
+        return "check"
 
 
 if __name__ == '__main__':
