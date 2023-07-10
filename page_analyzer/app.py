@@ -1,4 +1,5 @@
 import psycopg2
+from psycopg2.extras import NamedTupleCursor
 import os
 import validators
 import time
@@ -70,17 +71,16 @@ def site_check():
 @app.route("/urls/<id>")
 def analyze(id):
     conn = psycopg2.connect(DATABASE_URL)
-    id_url=id
-    with conn.cursor() as curs:
+    with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
         curs.execute(
-            "SELECT * FROM urls WHERE id = %s", (id_url,)
+            # "SELECT name FROM urls WHERE id =  %s", (88, )
+            "SELECT  * FROM urls"
         )
-        result_url= curs.fetchall()
+        result_url = curs.fetchall()
     # (url_id, name, created_at) = result_url
-        check = curs.fetchall()
-        print("id=", id)
-        print(check)
-        return "check"
+        print("id=", type(id), id)
+        print(result_url)
+        return result_url
 
 
 if __name__ == '__main__':
