@@ -78,7 +78,7 @@ def analyze(id):
             "SELECT  * FROM urls"
         )
         checkr_url = curs.fetchall()
-        print(checkr_url[0])
+        print(checkr_url[0][0])
         
     with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
         curs.execute(
