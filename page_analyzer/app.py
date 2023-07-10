@@ -73,7 +73,7 @@ def analyze(id):
     conn = psycopg2.connect(DATABASE_URL)
     with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
         curs.execute(
-            "SELECT name FROM urls WHERE id =  %s", (int(id), )
+            "SELECT name FROM urls WHERE id =  %s", (3, )
             #"SELECT  * FROM urls"
         )
         result_url = curs.fetchall()
