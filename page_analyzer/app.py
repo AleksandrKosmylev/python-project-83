@@ -71,14 +71,24 @@ def site_check():
 @app.route("/urls/<id>")
 def analyze(id):
     conn = psycopg2.connect(DATABASE_URL)
+    urls_id = int(id)
+    
     with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
         curs.execute(
-            "SELECT name FROM urls WHERE id =  %s", (3, )
+            "SELECT  * FROM urls"
+        )
+        checkr_url = curs.fetchall()
+        print(checkr_url[0])
+        
+    with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
+        curs.execute(
+            "SELECT name FROM urls WHERE id =  %s", (urls_id, )
             #"SELECT  * FROM urls"
         )
         result_url = curs.fetchall()
     # (url_id, name, created_at) = result_url
         print("id=", type(id), id)
+        print("urls_id=", type(urls_id), urls_id)
         print(result_url)
         return result_url
 
