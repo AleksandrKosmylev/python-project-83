@@ -80,7 +80,7 @@ def analyze(id):
         print("id=", type(id), id)
         print("urls_id=", type(id), id)
         print(type(result_url))
-        return result_url
+        return result_url[0][0]
 
 
 if __name__ == '__main__':
