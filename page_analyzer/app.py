@@ -72,15 +72,15 @@ def site_check():
 def analyze(id):
     with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
         curs.execute(
-            "SELECT name FROM urls WHERE id=%s", (id, )
-            # "SELECT  * FROM urls"
+            # "SELECT name FROM urls WHERE id=%s", (id, )
+            "SELECT  * FROM urls"
         )
         result_url = curs.fetchall()
-        # (url_id, name, created_at) = result_url
+        (url_id, name, created_at) = result_url[0]
         print("id=", type(id), id)
         print("urls_id=", type(id), id)
-        print(type(result_url))
-        return result_url[0][0]
+        print(type(result_url), result_url)
+        return name
 
 
 if __name__ == '__main__':
