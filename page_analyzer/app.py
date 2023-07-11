@@ -79,6 +79,7 @@ def analyze(id):
         )
         result_url = curs.fetchall()
         # (url_id, name, created_at) = result_url
+        print(curs)
         print("id=", type(id), id)
         print("urls_id=", type(urls_id), urls_id)
         print(result_url)
