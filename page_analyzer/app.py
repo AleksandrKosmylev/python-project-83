@@ -16,6 +16,7 @@ from flask import (
 
 
 DATABASE_URL = os.getenv('DATABASE_URL')
+conn = psycopg2.connect(DATABASE_URL)
 load_dotenv()
 app = Flask(__name__)
 
@@ -41,7 +42,6 @@ def site_check():
     if errors:
         return "Error", 422
 
-    conn = psycopg2.connect(DATABASE_URL)
     now = time.strftime("%Y-%m-%d")
     with conn.cursor() as curs:
         curs.execute(
@@ -61,28 +61,25 @@ def site_check():
         curs.execute(
             "SELECT * FROM urls WHERE name = %s", (address,)
         )
-        check = curs.fetchall()
+        check = curs.fetchone()
         print("fetch result=", check)
-        print("get  int=", check[0][0], type(check[0][0]))
-        id = check[0][0]
+        print("get  int=", check[0], type(check[0]))
+        id = check[0]
         return redirect(url_for('analyze', id=id))
 
 
 @app.route("/urls/<id>")
 def analyze(id):
-    conn = psycopg2.connect(DATABASE_URL)
-    urls_id = int(id)
     with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
         curs.execute(
-            "SELECT name FROM urls WHERE id=%s", (urls_id, )
+            "SELECT name FROM urls WHERE id=%s", (id, )
             # "SELECT  * FROM urls"
         )
         result_url = curs.fetchall()
         # (url_id, name, created_at) = result_url
-        print(curs)
         print("id=", type(id), id)
-        print("urls_id=", type(urls_id), urls_id)
-        print(result_url)
+        print("urls_id=", type(id), id)
+        print(type(result_url))
         return result_url
 
 
