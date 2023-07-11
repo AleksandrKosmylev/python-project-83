@@ -51,20 +51,15 @@ def site_check():
             """,
             (address, now)
         )
-        """
-        curs.execute('SELECT * FROM urls')
         conn.commit()
-        check = curs.fetchall()
-        return f'{check}'
-        """
     with conn.cursor() as curs:
         curs.execute(
             "SELECT * FROM urls WHERE name = %s", (address,)
         )
-        check = curs.fetchone()
-        print("fetch result=", check)
-        print("get  int=", check[0], type(check[0]))
-        id = check[0]
+        extracted = curs.fetchone()
+        print("fetch result=", extracted)
+        print("get  int=", extracted[0], type(extracted[0]))
+        id = extracted[0]
         return redirect(url_for('analyze', id=id))
 
 
