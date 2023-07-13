@@ -75,8 +75,11 @@ def analyze(id):
         print("id=", type(id), id)
         print("urls_id=", type(id), id)
         print(type(result_url), result_url)
-        return name
-
+        # return name
+        return render_template(
+            'urls/index.html',
+            name=name,
+        )
 
 if __name__ == '__main__':
     index()
