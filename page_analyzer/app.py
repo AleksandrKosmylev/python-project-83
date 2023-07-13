@@ -81,19 +81,19 @@ def analyze(id):
             name=name,
         )
 
-@app.route("/urls")
+@app.route("/database")
 def show_database():
     with conn.cursor() as curs:
         curs.execute(
             "SELECT * FROM urls"
         )
-    result_url = curs.fetchall()
-    (url_id, name, created_at) = result_url[0]
-    return render_template(
-        'urls/database.html',
-        url_id=url_id,
-        name=name,
-    )
+        result_url = curs.fetchall()
+        (url_id, name, created_at) = result_url[0]
+        return render_template(
+            '/database.html',
+            url_id=url_id,
+            name=name,
+        )
 
 
 if __name__ == '__main__':
